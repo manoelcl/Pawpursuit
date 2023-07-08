@@ -1,13 +1,45 @@
-[gd_scene load_steps=9 format=3 uid="uid://b6wtnlei6dj3d"]
+[gd_scene load_steps=15 format=3 uid="uid://b6wtnlei6dj3d"]
 
 [ext_resource type="Texture2D" uid="uid://x6r22mrc1n0e" path="res://sprites/mouse.png" id="1_fj8r6"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_kfp5d"]
-[ext_resource type="Shader" path="res://particles/player.gdshader" id="2_wbwpp"]
+[ext_resource type="Texture2D" uid="uid://8vf6gdcd5mpr" path="res://particles/dust/particulas-Sheet_0004_0.png" id="3_5jmo8"]
+[ext_resource type="Texture2D" uid="uid://cj41sc3x2exi4" path="res://particles/dust/particulas-Sheet_0003_1.png" id="4_wjbfi"]
+[ext_resource type="Texture2D" uid="uid://dboyvh7k8iknj" path="res://particles/dust/particulas-Sheet_0002_2.png" id="5_jq60u"]
+[ext_resource type="Texture2D" uid="uid://c6ja0nn4sv6xw" path="res://particles/dust/particulas-Sheet_0001_3.png" id="6_noad2"]
+[ext_resource type="Texture2D" uid="uid://bjtm7r3hn8ksy" path="res://particles/dust/particulas-Sheet_0000_4.png" id="7_yeig6"]
+
+[sub_resource type="Shader" id="Shader_8r5vi"]
+code = "shader_type particles;
+
+void start() {
+	// Place start code here.
+}
+
+void process() {
+	// Place process code here.
+}
+"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_484xy"]
-shader = ExtResource("2_wbwpp")
+shader = SubResource("Shader_8r5vi")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2mdlh"]
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_ty73x"]
+frames = 5
+one_shot = true
+speed_scale = 4.0
+frame_0/texture = ExtResource("3_5jmo8")
+frame_1/texture = ExtResource("4_wjbfi")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("5_jq60u")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("6_noad2")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("7_yeig6")
+frame_4/duration = 1.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w70wn"]
+radius = 9.0
+height = 24.0
 
 [sub_resource type="Animation" id="Animation_ddmue"]
 length = 0.001
@@ -58,17 +90,17 @@ texture = ExtResource("1_fj8r6")
 hframes = 6
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Sprite2D"]
-z_index = 12
+z_index = 1
 z_as_relative = false
 texture_filter = 1
 texture_repeat = 1
 amount = 2
+texture = SubResource("AnimatedTexture_ty73x")
 gravity = Vector2(0, 0)
-scale_amount_min = 12.0
-scale_amount_max = 12.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_2mdlh")
+position = Vector2(0, -1)
+shape = SubResource("CapsuleShape2D_w70wn")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite2D")

@@ -3,8 +3,9 @@
 [ext_resource type="Script" path="res://enemies/cat.gd" id="1_tsext"]
 [ext_resource type="Texture2D" uid="uid://byuyb3dxiw162" path="res://sprites/cat-Sheet.png" id="2_kjy41"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_70xme"]
-size = Vector2(14, 28)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2sx6c"]
+radius = 8.0
+height = 22.0
 
 [sub_resource type="Animation" id="Animation_ddmue"]
 length = 0.001
@@ -49,9 +50,10 @@ motion_mode = 1
 script = ExtResource("1_tsext")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_70xme")
+shape = SubResource("CapsuleShape2D_2sx6c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 6
 texture = ExtResource("2_kjy41")
 hframes = 6
 
