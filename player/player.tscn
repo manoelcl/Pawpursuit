@@ -1,7 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b6wtnlei6dj3d"]
+[gd_scene load_steps=9 format=3 uid="uid://b6wtnlei6dj3d"]
 
 [ext_resource type="Texture2D" uid="uid://x6r22mrc1n0e" path="res://sprites/mouse.png" id="1_fj8r6"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_kfp5d"]
+[ext_resource type="Shader" path="res://particles/player.gdshader" id="2_wbwpp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_484xy"]
+shader = ExtResource("2_wbwpp")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2mdlh"]
 
@@ -49,10 +53,16 @@ script = ExtResource("1_kfp5d")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 texture_repeat = 1
+material = SubResource("ShaderMaterial_484xy")
 texture = ExtResource("1_fj8r6")
 hframes = 6
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Sprite2D"]
+z_index = 12
+z_as_relative = false
+texture_filter = 1
+texture_repeat = 1
+amount = 2
 gravity = Vector2(0, 0)
 scale_amount_min = 12.0
 scale_amount_max = 12.0

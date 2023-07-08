@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b2jntu7o5e2qf"]
+[gd_scene load_steps=5 format=3 uid="uid://b2jntu7o5e2qf"]
 
 [ext_resource type="PackedScene" uid="uid://b6wtnlei6dj3d" path="res://player/player.tscn" id="1_bl25o"]
 [ext_resource type="PackedScene" uid="uid://bdqhftaatdhjl" path="res://enemies/cat.tscn" id="2_6p3hb"]
 [ext_resource type="Script" path="res://scripts/cameraMovement.gd" id="2_key0g"]
+[ext_resource type="PackedScene" uid="uid://wngxjq36ymr8" path="res://environment/object.tscn" id="4_5h2pw"]
 
 [node name="World" type="Node2D"]
 
@@ -16,3 +17,12 @@ script = ExtResource("2_key0g")
 [node name="CAT" parent="." instance=ExtResource("2_6p3hb")]
 position = Vector2(400, 249)
 scale = Vector2(2, 2)
+
+[node name="Object" parent="." instance=ExtResource("4_5h2pw")]
+position = Vector2(496, 131)
+
+[node name="Object2" parent="." instance=ExtResource("4_5h2pw")]
+position = Vector2(670, 190)
+
+[node name="Object3" parent="." instance=ExtResource("4_5h2pw")]
+position = Vector2(380, 382)
