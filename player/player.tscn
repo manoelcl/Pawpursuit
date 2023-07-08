@@ -25,7 +25,6 @@ shader = SubResource("Shader_8r5vi")
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_ty73x"]
 frames = 5
-one_shot = true
 speed_scale = 4.0
 frame_0/texture = ExtResource("3_5jmo8")
 frame_1/texture = ExtResource("4_wjbfi")
@@ -95,6 +94,7 @@ z_as_relative = false
 texture_filter = 1
 texture_repeat = 1
 amount = 2
+lifetime = 0.5
 texture = SubResource("AnimatedTexture_ty73x")
 gravity = Vector2(0, 0)
 
