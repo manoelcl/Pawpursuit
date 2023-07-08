@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://bdqhftaatdhjl"]
+
+[ext_resource type="Script" path="res://enemies/cat.gd" id="1_tsext"]
+[ext_resource type="Texture2D" uid="uid://byuyb3dxiw162" path="res://sprites/cat-Sheet.png" id="2_kjy41"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_70xme"]
+size = Vector2(14, 28)
+
+[sub_resource type="Animation" id="Animation_08f3d"]
+resource_name = "default"
+length = 1.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_ddmue"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6o3uo"]
+_data = {
+"RESET": SubResource("Animation_ddmue"),
+"default": SubResource("Animation_08f3d")
+}
+
+[node name="CAT" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_tsext")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_70xme")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_kjy41")
+hframes = 6
+frame = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+reset_on_save = false
+libraries = {
+"": SubResource("AnimationLibrary_6o3uo")
+}
