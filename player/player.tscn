@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6wtnlei6dj3d"]
+[gd_scene load_steps=4 format=3 uid="uid://b6wtnlei6dj3d"]
 
 [ext_resource type="Texture2D" uid="uid://x6r22mrc1n0e" path="res://sprites/mouse.png" id="1_fj8r6"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_kfp5d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2mdlh"]
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_kfp5d")
@@ -15,3 +17,6 @@ texture = ExtResource("1_fj8r6")
 gravity = Vector2(0, 0)
 scale_amount_min = 12.0
 scale_amount_max = 12.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_2mdlh")
