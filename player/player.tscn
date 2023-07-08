@@ -5,7 +5,6 @@
 
 [sub_resource type="Animation" id="Animation_i7kdy"]
 resource_name = "mouse_animation"
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -59,7 +58,6 @@ texture_filter = 1
 texture_repeat = 1
 texture = ExtResource("1_fj8r6")
 hframes = 6
-frame = 3
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Sprite2D"]
 gravity = Vector2(0, 0)
