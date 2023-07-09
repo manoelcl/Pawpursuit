@@ -4,10 +4,20 @@ var dogTexture = preload("res://sprites/dog-Sheet.png")
 @export var decreasedSpeed = 150
 @onready var sprite = $Sprite2D
 @onready var animation = $AnimationPlayer
-var isSlow=0
+@onready var GOCanvas:Node = get_node("../CanvasLayer")
+@onready var WinCanvas:Node = get_node("../CanvasLayer2")
+var isGameOver:bool = false
+var isSlow = 0
 
+func endGame(gameOver:bool):
+	isGameOver=true
+	if (gameOver):
+		GOCanvas.visible=true
+		return
+	print("You win!")
 
 func handleInput():
+	if (isGameOver): return
 	var moveDirection=Input.get_vector("ui_left","ui_right","ui_up","ui_down")
 	var speed=normalSpeed
 	if (isSlow>0):
@@ -34,12 +44,12 @@ func _physics_process(delta):
 			$Sprite2D.get_child(1).visible=true
 			scale=Vector2(2,2)
 		elif (collider.get_meta("isTrap")==true):
-			isSlow=60
+			isSlow+=60
 			collider.queue_free()
 			print("I collided with Trap")
 		elif (collider.get_meta("isEnemy")==true):
+			endGame(!get_meta("isDog"))
 			return
-			#print("I collided with Enemy")
 
 func _ready():
 	animation.play("default")

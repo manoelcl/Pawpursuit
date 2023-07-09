@@ -26,7 +26,7 @@ func _physics_process(delta):
 	for i in get_slide_collision_count():
 		var collider:Node2D = get_slide_collision(i).get_collider()
 		if (collider.get_meta("isTrap")==true):
-			isSlow=60
+			isSlow+=60
 			collider.queue_free()
 			print("Cat collided with Trap")
 
