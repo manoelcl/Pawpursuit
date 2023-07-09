@@ -7,6 +7,7 @@ var dogTexture = preload("res://sprites/dog-Sheet.png")
 @onready var GOCanvas:Node = get_node("../CanvasLayer")
 @onready var WinCanvas:Node = get_node("../CanvasLayer2")
 var isGameOver:bool = false
+var isWin:bool = false
 var isSlow = 0
 
 func endGame(gameOver:bool):
@@ -15,6 +16,7 @@ func endGame(gameOver:bool):
 		GOCanvas.visible=true
 		return
 	print("You win!")
+	WinCanvas.visible=true
 
 func handleInput():
 	if (isGameOver): return

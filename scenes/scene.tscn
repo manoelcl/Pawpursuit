@@ -1,12 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2jntu7o5e2qf"]
+[gd_scene load_steps=14 format=3 uid="uid://b2jntu7o5e2qf"]
 
 [ext_resource type="PackedScene" uid="uid://b6wtnlei6dj3d" path="res://player/player.tscn" id="1_bl25o"]
 [ext_resource type="PackedScene" uid="uid://bdqhftaatdhjl" path="res://enemies/cat.tscn" id="2_6p3hb"]
 [ext_resource type="Script" path="res://scripts/cameraMovement.gd" id="2_key0g"]
 [ext_resource type="Texture2D" uid="uid://7n6pcchtiyvj" path="res://sprites/tiles-background-Sheet.png" id="4_d31cn"]
 [ext_resource type="PackedScene" uid="uid://wngxjq36ymr8" path="res://environment/mousetrap.tscn" id="5_ae1nk"]
+[ext_resource type="Script" path="res://scenes/menu1.gd" id="5_lwprt"]
 [ext_resource type="Texture2D" uid="uid://bw6yb15bdhx1d" path="res://sprites/gameover.png" id="5_wl4yh"]
 [ext_resource type="PackedScene" uid="uid://denhmvevgxwa0" path="res://environment/dog.tscn" id="6_4k58a"]
+[ext_resource type="Theme" uid="uid://ci4rkngeujxsm" path="res://new_UI_theme.tres" id="6_iu7ql"]
+[ext_resource type="Script" path="res://scenes/menu2.gd" id="7_si2u6"]
+[ext_resource type="Texture2D" uid="uid://dpcyel2wxktcx" path="res://sprites/youwin.png" id="7_yf3xf"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ukosr"]
 texture = ExtResource("4_d31cn")
@@ -45,7 +49,7 @@ script = ExtResource("2_key0g")
 
 [node name="CAT" parent="." instance=ExtResource("2_6p3hb")]
 z_index = 1
-position = Vector2(579, 355)
+position = Vector2(578, 416)
 scale = Vector2(2, 2)
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -57,12 +61,63 @@ layer_0/tile_data = PackedInt32Array(65536, 196608, 0, 131072, 131072, 0, 196608
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 visible = false
+script = ExtResource("5_lwprt")
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
 texture_filter = 1
 position = Vector2(579, 255)
 scale = Vector2(5.875, 5.875)
 texture = ExtResource("5_wl4yh")
+
+[node name="ButtonQuit" type="Button" parent="CanvasLayer"]
+texture_filter = 1
+offset_left = 590.0
+offset_top = 379.0
+offset_right = 725.0
+offset_bottom = 422.0
+theme = ExtResource("6_iu7ql")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "quit"
+
+[node name="ButtonRetry" type="Button" parent="CanvasLayer"]
+texture_filter = 1
+offset_left = 424.0
+offset_top = 378.0
+offset_right = 559.0
+offset_bottom = 421.0
+theme = ExtResource("6_iu7ql")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "retry"
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+visible = false
+script = ExtResource("7_si2u6")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer2"]
+texture_filter = 1
+position = Vector2(579, 255)
+scale = Vector2(5.875, 5.875)
+texture = ExtResource("7_yf3xf")
+
+[node name="ButtonQuit" type="Button" parent="CanvasLayer2"]
+texture_filter = 1
+offset_left = 590.0
+offset_top = 379.0
+offset_right = 725.0
+offset_bottom = 422.0
+theme = ExtResource("6_iu7ql")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "quit"
+
+[node name="ButtonRetry" type="Button" parent="CanvasLayer2"]
+texture_filter = 1
+offset_left = 424.0
+offset_top = 378.0
+offset_right = 559.0
+offset_bottom = 421.0
+theme = ExtResource("6_iu7ql")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "retry"
 
 [node name="MouseTrap" parent="." instance=ExtResource("5_ae1nk")]
 position = Vector2(529, 108)
@@ -87,3 +142,8 @@ position = Vector2(560, 173)
 
 [node name="dog" parent="." instance=ExtResource("6_4k58a")]
 position = Vector2(580, -81)
+
+[connection signal="pressed" from="CanvasLayer/ButtonQuit" to="CanvasLayer" method="_on_button_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/ButtonRetry" to="CanvasLayer" method="_on_button_retry_pressed"]
+[connection signal="pressed" from="CanvasLayer2/ButtonQuit" to="CanvasLayer2" method="_on_button_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer2/ButtonRetry" to="CanvasLayer2" method="_on_button_retry_pressed"]
