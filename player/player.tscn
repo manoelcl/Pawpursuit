@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b6wtnlei6dj3d"]
+[gd_scene load_steps=16 format=3 uid="uid://b6wtnlei6dj3d"]
 
 [ext_resource type="Texture2D" uid="uid://x6r22mrc1n0e" path="res://sprites/mouse.png" id="1_fj8r6"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_kfp5d"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dboyvh7k8iknj" path="res://particles/dust/particulas-Sheet_0002_2.png" id="5_jq60u"]
 [ext_resource type="Texture2D" uid="uid://c6ja0nn4sv6xw" path="res://particles/dust/particulas-Sheet_0001_3.png" id="6_noad2"]
 [ext_resource type="Texture2D" uid="uid://bjtm7r3hn8ksy" path="res://particles/dust/particulas-Sheet_0000_4.png" id="7_yeig6"]
+[ext_resource type="Script" path="res://player/particleorientation.gd" id="8_hqtgp"]
 
 [sub_resource type="Shader" id="Shader_8r5vi"]
 code = "shader_type particles;
@@ -25,16 +26,17 @@ shader = SubResource("Shader_8r5vi")
 
 [sub_resource type="AnimatedTexture" id="AnimatedTexture_ty73x"]
 frames = 5
-speed_scale = 4.0
+speed_scale = 2.0
 frame_0/texture = ExtResource("3_5jmo8")
+frame_0/duration = 0.1
 frame_1/texture = ExtResource("4_wjbfi")
-frame_1/duration = 1.0
+frame_1/duration = 0.15
 frame_2/texture = ExtResource("5_jq60u")
-frame_2/duration = 1.0
+frame_2/duration = 0.2
 frame_3/texture = ExtResource("6_noad2")
-frame_3/duration = 1.0
+frame_3/duration = 0.23
 frame_4/texture = ExtResource("7_yeig6")
-frame_4/duration = 1.0
+frame_4/duration = 0.25
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w70wn"]
 radius = 9.0
@@ -88,15 +90,29 @@ material = SubResource("ShaderMaterial_484xy")
 texture = ExtResource("1_fj8r6")
 hframes = 6
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Sprite2D"]
+[node name="Node2D" type="Node2D" parent="Sprite2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Sprite2D/Node2D"]
 z_index = 1
 z_as_relative = false
 texture_filter = 1
 texture_repeat = 1
-amount = 2
+position = Vector2(0, 21)
+amount = 5
 lifetime = 0.5
+draw_order = 1
 texture = SubResource("AnimatedTexture_ty73x")
 gravity = Vector2(0, 0)
+script = ExtResource("8_hqtgp")
+
+[node name="mouse" type="Sprite2D" parent="Sprite2D"]
+visible = false
+z_index = 130
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_fj8r6")
+hframes = 6
+frame = 5
+metadata/isDog = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -1)
