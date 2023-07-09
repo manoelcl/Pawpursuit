@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://b2jntu7o5e2qf"]
+[gd_scene load_steps=10 format=3 uid="uid://b2jntu7o5e2qf"]
 
 [ext_resource type="PackedScene" uid="uid://b6wtnlei6dj3d" path="res://player/player.tscn" id="1_bl25o"]
 [ext_resource type="PackedScene" uid="uid://bdqhftaatdhjl" path="res://enemies/cat.tscn" id="2_6p3hb"]
 [ext_resource type="Script" path="res://scripts/cameraMovement.gd" id="2_key0g"]
 [ext_resource type="Texture2D" uid="uid://7n6pcchtiyvj" path="res://sprites/tiles-background-Sheet.png" id="4_d31cn"]
 [ext_resource type="Texture2D" uid="uid://bw6yb15bdhx1d" path="res://sprites/gameover.png" id="5_wl4yh"]
+[ext_resource type="Texture2D" uid="uid://ma1mclm2h2qf" path="res://sprites/mouse-trap.png" id="6_mxavk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ukosr"]
 texture = ExtResource("4_d31cn")
@@ -31,6 +32,9 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ukosr")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hic4t"]
+size = Vector2(10, 11)
+
 [node name="World" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("1_bl25o")]
@@ -43,7 +47,7 @@ script = ExtResource("2_key0g")
 
 [node name="CAT" parent="." instance=ExtResource("2_6p3hb")]
 z_index = 1
-position = Vector2(579, 356)
+position = Vector2(579, 355)
 scale = Vector2(2, 2)
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -61,3 +65,15 @@ texture_filter = 1
 position = Vector2(579, 255)
 scale = Vector2(5.875, 5.875)
 texture = ExtResource("5_wl4yh")
+
+[node name="Node" type="Node" parent="."]
+
+[node name="trampa" type="Sprite2D" parent="Node"]
+position = Vector2(553, 131)
+texture = ExtResource("6_mxavk")
+
+[node name="Area2D" type="Area2D" parent="Node"]
+position = Vector2(553, 131.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/Area2D"]
+shape = SubResource("RectangleShape2D_hic4t")
