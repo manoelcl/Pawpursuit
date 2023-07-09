@@ -8,6 +8,7 @@
 size = Vector2(14, 29)
 
 [node name="dog" type="StaticBody2D"]
+scale = Vector2(2, 2)
 input_pickable = true
 physics_material_override = SubResource("PhysicsMaterial_0vndi")
 metadata/isDog = true

@@ -6,6 +6,8 @@ extends CharacterBody2D
 
 func handleInput():
 	var moveDirection=(player.global_position-position).normalized()
+	if (player.get_meta("isDog")):
+		moveDirection=moveDirection*-1
 	velocity=moveDirection*speed
 	if (moveDirection.length())!=0:
 		sprite.rotation=moveDirection.angle()+PI/2
