@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b2jntu7o5e2qf"]
+[gd_scene load_steps=11 format=3 uid="uid://b2jntu7o5e2qf"]
 
 [ext_resource type="PackedScene" uid="uid://b6wtnlei6dj3d" path="res://player/player.tscn" id="1_bl25o"]
 [ext_resource type="PackedScene" uid="uid://bdqhftaatdhjl" path="res://enemies/cat.tscn" id="2_6p3hb"]
@@ -32,8 +32,17 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_ukosr")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hic4t"]
-size = Vector2(10, 11)
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kumgk"]
+texture = ExtResource("6_mxavk")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-6.125, -6.75, 6.125, -6.875, 6, 8, -6.125, 8)
+
+[sub_resource type="TileSet" id="TileSet_t4nng"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_kumgk")
 
 [node name="World" type="Node2D"]
 
@@ -66,14 +75,12 @@ position = Vector2(579, 255)
 scale = Vector2(5.875, 5.875)
 texture = ExtResource("5_wl4yh")
 
-[node name="Node" type="Node" parent="."]
-
-[node name="trampa" type="Sprite2D" parent="Node"]
-position = Vector2(553, 131)
-texture = ExtResource("6_mxavk")
-
-[node name="Area2D" type="Area2D" parent="Node"]
+[node name="Area2D" type="Area2D" parent="."]
 position = Vector2(553, 131.5)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Node/Area2D"]
-shape = SubResource("RectangleShape2D_hic4t")
+[node name="TileMap" type="TileMap" parent="Area2D"]
+texture_filter = 1
+tile_set = SubResource("TileSet_t4nng")
+cell_quadrant_size = 32
+format = 2
+layer_0/tile_data = PackedInt32Array(7, 0, 0, 131072, 0, 0, -65538, 0, 0, -327676, 0, 0, -262131, 0, 0, 17, 0, 0, -196582, 0, 0)
